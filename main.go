@@ -20,6 +20,7 @@ func main() {
 
 	flag.StringVar(&f.Device, "device", "", "Serial device to interact with")
 	flag.IntVar(&f.BaudRate, "baudrate", 115200, "Serial device speed")
+	flag.Parse()
 
 	if f.Device == "" {
 		panic("Must set a valid device name")
