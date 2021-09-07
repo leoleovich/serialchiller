@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/leoleovich/serialchiller/feeder"
 )
@@ -30,7 +31,6 @@ func main() {
 		panic(err)
 	}
 
-
 	go f.Read(ctx)
 
 	fmt.Println("Enter your commands:")
@@ -44,4 +44,7 @@ func main() {
 			f.Write(cmd)
 		}
 	}
+	// Wait for all remaining reads
+	time.Sleep(time.Second)
+	cancel()
 }

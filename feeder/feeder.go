@@ -4,9 +4,8 @@ import (
 	"bufio"
 	"context"
 	"fmt"
-	"syscall"
 
-	"go.bug.st/serial.v1"
+	"go.bug.st/serial"
 )
 
 type Feeder struct {
@@ -42,9 +41,6 @@ func (f *Feeder) Read(ctx context.Context) {
 		default:
 			buf, _, err := f.reader.ReadLine()
 			if err != nil {
-				if err == syscall.EINTR {
-					continue
-				}
 				fmt.Println(err)
 			}
 			bufStr := string(buf)
